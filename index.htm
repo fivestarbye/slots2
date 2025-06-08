@@ -147,7 +147,7 @@
         particles = particles.filter(p => p.alpha > 0);
         if (particles.length > 0) requestAnimationFrame(animate);
         else setTimeout(() => { overlay.style.display = 'none';
-  overlay.style.pointerEvents = 'none'; }, 3000);
+  overlay.style.pointerEvents = 'none'; }, 6000);
       }
       animate();
     }
@@ -172,14 +172,16 @@
     const spin = setInterval(() => {
       imgElement.src = images[count % images.length];
       count++;
-    }, 100);
+    }, 200);
 
     setTimeout(() => {
       clearInterval(spin);
       imgElement.src = results[index];
 
       const sounds = ['sound-l', 'sound-m', 'sound-r'];
-      document.getElementById(sounds[index]).play();
+      const sound = document.getElementById(sounds[index]);
+      sound.currentTime = 0;
+      sound.play();
 
       if (index === reels.length - 1) {
         setTimeout(() => {
@@ -189,7 +191,7 @@
           }
         }, 500);
       }
-    }, 2000);
+    }, 3000);
   }, index * 500);
 });
     };
